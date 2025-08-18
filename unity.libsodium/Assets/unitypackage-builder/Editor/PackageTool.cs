@@ -2,14 +2,21 @@
 
 public class PackageTool
 {
-    [MenuItem("Package/Update Package")]
+    private const string VERSION = "0.2.2";
+
+    [MenuItem("Package/.unitypackage")]
     private static void UpdatePackage()
     {
-        const string VERSION = "0.2.2";
         AssetDatabase.ExportPackage(
-            new[] {"Assets/unity.libsodium"},
-            $"../unity.libsodium-{VERSION}.unitypackage",
+            new[] { "Assets/unity.libsodium" },
+            $"unity.libsodium-{VERSION}.unitypackage",
             ExportPackageOptions.Recurse
         );
+    }
+
+    [MenuItem("Package/.tarball")]
+    public static void BuildRelease()
+    {
+        UnityEditor.PackageManager.Client.Pack("Assets/unity.libsodium", "Release");
     }
 }
