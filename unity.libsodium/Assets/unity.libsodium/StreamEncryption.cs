@@ -16,7 +16,7 @@ namespace unity.libsodium
         // - Larger buffers reduce the number of calls to the native encryption function, improving throughput.
         // - Smaller buffers use less memory but increase processing overhead due to more frequent calls.
         // Adjust this value based on application requirements and platform constraints.
-        private const int BUFFER_SIZE = 2 * 1024 * 1024; 
+        private const int BUFFER_SIZE = 256 * 1024; // 256 KB buffer size
         [ThreadStatic]
         private static byte[] SharedBuffer = new byte[BUFFER_SIZE];
         
