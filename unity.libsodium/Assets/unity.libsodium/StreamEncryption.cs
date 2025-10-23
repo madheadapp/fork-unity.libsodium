@@ -11,6 +11,11 @@ namespace unity.libsodium
         private const int CHACHA20_NONCEBYTES = 8;
 
         private const int BLOCK_SIZE = 64;
+        // BUFFER_SIZE determines the chunk size for encryption/decryption operations.
+        // 2MB was chosen as a compromise between memory usage and performance:
+        // - Larger buffers reduce the number of calls to the native encryption function, improving throughput.
+        // - Smaller buffers use less memory but increase processing overhead due to more frequent calls.
+        // Adjust this value based on application requirements and platform constraints.
         private const int BUFFER_SIZE = 2 * 1024 * 1024; 
         private static readonly byte[] SharedBuffer = new byte[BUFFER_SIZE];
         
