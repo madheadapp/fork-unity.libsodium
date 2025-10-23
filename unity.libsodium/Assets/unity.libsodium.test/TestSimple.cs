@@ -15,17 +15,22 @@ namespace unity.libsodium.test
             Assert.True(x == 0 || x == 1);
 
             const string MESSAGE = "Test message to encrypt";
-            byte[] nonce = StreamEncryption.GenerateNonceChaCha20();
-            byte[] key = StreamEncryption.GenerateKey();
+            var nonce = StreamEncryption.GenerateNonceChaCha20();
+            var key = StreamEncryption.GenerateKey();
 
             //encrypt it
-            byte[] encrypted = StreamEncryption.EncryptChaCha20(MESSAGE, nonce, key);
-
+            var encrypted = StreamEncryption.EncryptChaCha20(MESSAGE, nonce, key);
+            
+            var encryptedText = System.Text.Encoding.UTF8.GetString(encrypted);
+            Debug.Log("Encrypted text: " + encryptedText);
 
             //decrypt it
-            byte[] decrypted = StreamEncryption.DecryptChaCha20(encrypted, nonce, key);
+            var decrypted = StreamEncryption.DecryptChaCha20(encrypted, nonce, key);
 
-            Assert.AreEqual(MESSAGE, decrypted);
+            var decryptedText = System.Text.Encoding.UTF8.GetString(decrypted);
+            Debug.Log("Decrypted text: " + decryptedText);
+            
+            Assert.AreEqual(MESSAGE, decryptedText);
         }
 
     }
