@@ -17,7 +17,8 @@ namespace unity.libsodium
         // - Smaller buffers use less memory but increase processing overhead due to more frequent calls.
         // Adjust this value based on application requirements and platform constraints.
         private const int BUFFER_SIZE = 2 * 1024 * 1024; 
-        private static readonly byte[] SharedBuffer = new byte[BUFFER_SIZE];
+        [ThreadStatic]
+        private static byte[] SharedBuffer = new byte[BUFFER_SIZE];
         
         public static byte[] GenerateNonceChaCha20()
         {
