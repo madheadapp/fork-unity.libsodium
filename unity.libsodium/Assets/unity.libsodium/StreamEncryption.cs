@@ -85,7 +85,7 @@ namespace unity.libsodium
 
             //validate the length of the nonce
             if (nonce is not { Length: CHACHA20_NONCEBYTES })
-                throw new Exception();
+                throw new ArgumentException("Invalid nonce length.");
             //throw new Exception("nonce", (nonce == null) ? 0 : nonce.Length,
             //	string.Format("nonce must be {0} bytes in length.", CHACHA20_NONCEBYTES));
 
