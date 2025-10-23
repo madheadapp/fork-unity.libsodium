@@ -79,7 +79,7 @@ namespace unity.libsodium
         {
             //validate the length of the key
             if (key is not { Length: CHACHA20_KEY_BYTES })
-                throw new Exception();
+                throw new ArgumentException("Invalid key length.");
             //throw new Exception("key", (key == null) ? 0 : key.Length,
             //	string.Format("key must be {0} bytes in length.", CHACHA20_KEY_BYTES));
 
